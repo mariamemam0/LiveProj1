@@ -22,36 +22,24 @@ new #[Layout('layouts::app',['title' =>'Create Post'])] class extends Component
 ?>
 
 <form wire:submit.prevent="save" class="space-y-6">
-
-    <div class="space-y-2">
-        <label class="block text-sm font-medium text-gray-700 dark:text-white">Title</label>
-        <input
-            type="text"
-            wire:model="title"
-            class="block p-3 w-full shadow-xs disabled:shadow-none border rounded-lg bg-white dark:bg-zinc-800 text-sm leading-6 text-gray-700 dark:text-white"
-        >
-        @error('title')
-            <div class="mt-1 text-sm font-medium text-red-500 dark:text-red-400">{{ $message }}</div>
-        @enderror
-    </div>
-
-    <div class="space-y-2">
-        <label class="block text-sm font-medium text-gray-700 dark:text-white">Content</label>
-        <textarea
+ <flux:input
+        label="Title"
+        placeholder="Enter post title"
+        wire:model="title"
+></flux:input>
+        <flux:textarea
+            label="Content"
+            placeholder="Enter post content"
             wire:model="content"
-            rows="6"
-            class="block p-3 w-full shadow-xs disabled:shadow-none border rounded-lg bg-white dark:bg-zinc-800 text-sm leading-6 text-gray-700 dark:text-white"
-        ></textarea>
+        ></flux:textarea>
+
         @error('content')
             <div class="mt-1 text-sm font-medium text-red-500 dark:text-red-400">{{ $message }}</div>
         @enderror
-    </div>
+    
 
-    <button
-        type="submit"
-        class="relative items-center font-medium justify-center gap-2 whitespace-nowrap disabled:opacity-70"
-    >
+    <flux:button type="submit" variant="primary">
         Save
-    </button>
+    </flux:button>
 
 </form>
