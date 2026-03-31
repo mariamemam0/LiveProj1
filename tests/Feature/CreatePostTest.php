@@ -1,16 +1,24 @@
 <?php
 
+use App\Models\Post;
 use Livewire\Livewire;
+use function Pest\Laravel\assertDatabaseHas;
+use function Pest\Laravel\assertDatabaseMissing;
 
 test('example', function () {
-    Livewire::test('pages::post.create')
-    ->set('title','Test title')
-    ->set('content','Test content')
-    ->call('save')
-    ->assertRedirect('/');
-    $this->assertDatabaseHas('posts', [  // check data is in DB
+    assertDatabaseMissing(Post::class,[
         'title' => 'Test title',
-        'content'=>'Test content',
+        'content' => 'Test content'
     ]);
+   visit('/post/create')
+    ->type('[wire\:model="title"]','Test title')
+    ->type('[wire\:model="content"]','Test content')
+    ->press('Save')
+    ->assertPathIs('/');
+    assertDatabaseHas(Post::class,[
+        'title' => 'Test title',
+        'content' => 'Test content'
+    ]);
+    
     
 });
