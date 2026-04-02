@@ -1,9 +1,12 @@
 <?php
 use App\Models\Post;
+use Livewire\Attributes\Lazy;
+use Livewire\Attributes\Title;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 
-new #[Title('All Posts')] class extends Component
+
+new #[Lazy,Title('All Posts')] class extends Component
 {
   
    public string $sort = 'newst';
@@ -26,10 +29,13 @@ new #[Title('All Posts')] class extends Component
         $post->delete();
     }
 
+
 };
 ?>
 
-
+@placeholder
+<div> hi </div>
+@endplaceholder
 
 <div>
   {{-- Header --}}
