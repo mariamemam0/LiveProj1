@@ -66,29 +66,32 @@ new #[Lazy,Title('All Posts')] class extends Component
                 <option value="popular">Most popular</option>
             </flux:select>
         </div>
+        <flux:separator vertical class="mx-lg:hidden mx-2" />
+        <flux:button variant="primary" icon="plus" href="/posts/create" size="sm">New Post</flux:button>
+    </div>
     </div>
 
-    {{-- Posts grid --}}
-    <div class="mt-8 grid grid-cols-3 gap-6">
-        @foreach ($this->posts as $post)
-            <flux:card class="flex flex-col justify-between p-4 rounded-lg" variant="filled">
-                <div>
-                    <flux:heading size="lg">{{ $post->title }}</flux:heading>
-                    <flux:text class="mt-1 text-xs text-zinc-500">
-                        {{ $post->created_at->format('M d, Y') }}
-                    </flux:text>
-                    <flux:text class="mt-4 line-clamp-3">{{ $post->content }}</flux:text>
-                </div>
-
-                <div class="mt-6 flex justify-between">
-                    <flux:button variant="filled" href="/post/{{ $post->slug }}/edit" size="xs">
-                        Edit
-                    </flux:button>
-                    <flux:button variant="danger" href="/post/{{ $post->slug }}/delete" size="xs">
-                        Delete
-                    </flux:button>
-                </div>
-            </flux:card>
-        @endforeach
-    </div>
+    <div class="mt-8 grid grid-cols-3 gap-6 [*:has([data-dim-sorting][data-loading]]_:.opacity-50">
+@foreach ($this->posts as $post)
+    <livewire:pages::post.card :$post
+      :wire:key="$post->id" />
+@endforeach
 </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
