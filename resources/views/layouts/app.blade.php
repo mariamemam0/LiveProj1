@@ -22,7 +22,7 @@
             <flux:sidebar.search placeholder="Search..." />
 
             <flux:sidebar.nav>
-                <flux:sidebar.item icon="home" href="/" wire:navigate>All Posts</flux:sidebar.item>
+                <flux:sidebar.item icon="home" href="/post" wire:navigate>All Posts</flux:sidebar.item>
                 <flux:sidebar.item icon="pencil-square" href="/posts/create" wire:navigate>Create Post</flux:sidebar.item>
             </flux:sidebar.nav>
 
